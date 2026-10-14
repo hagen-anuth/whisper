@@ -1,6 +1,7 @@
 import {Geist, Geist_Mono} from 'next/font/google';
 import Link from 'next/link';
 
+import {Backdrop} from '@/components/backdrop';
 import {THEME_INIT_SCRIPT, ThemeToggle} from '@/components/theme-toggle';
 
 import type {Metadata} from 'next';
@@ -31,12 +32,13 @@ export default function RootLayout({
                 <script dangerouslySetInnerHTML={{__html: THEME_INIT_SCRIPT}} />
             </head>
             <body className="flex min-h-full flex-col">
+                <Backdrop />
                 <header className="mx-auto flex w-full max-w-xl items-center justify-between px-4 pt-6">
                     <Link
                         href="/"
                         className="text-lg font-semibold tracking-tight"
                     >
-                        whisper
+                        whisper 🤫
                         <span className="text-muted-foreground">.</span>
                     </Link>
                     <ThemeToggle />
