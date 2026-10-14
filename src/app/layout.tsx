@@ -2,6 +2,7 @@ import {Geist, Geist_Mono} from 'next/font/google';
 import Link from 'next/link';
 
 import {Backdrop} from '@/components/backdrop';
+import {SiteFooter} from '@/components/site-footer';
 import {THEME_INIT_SCRIPT, ThemeToggle} from '@/components/theme-toggle';
 
 import type {Metadata} from 'next';
@@ -46,10 +47,7 @@ export default function RootLayout({
                 <main className="mx-auto flex w-full max-w-xl flex-1 flex-col justify-center px-4 py-10">
                     {children}
                 </main>
-                <footer className="text-muted-foreground px-4 pb-6 text-center text-xs">
-                    Encrypted in your browser. The server never sees the secret
-                    or the key.
-                </footer>
+                <SiteFooter />
             </body>
         </html>
     );
