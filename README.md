@@ -1,12 +1,31 @@
+<p align="center">
+  <img src="docs/banner.svg" alt="whisper — one-time secret links, encrypted in your browser" width="100%">
+</p>
+
 # whisper
 
 Share a secret through a link that works once and expires after a chosen TTL.
 
+## Why whisper
+
+- **Encrypted before it leaves your browser.** The server only ever stores
+  scrambled data it cannot read.
+- **The key stays in the link.** Only the person holding the link can unlock
+  the secret. Not the server, not the database.
+- **Opens exactly once.** After the first view, the secret is deleted for
+  good.
+- **Expires on its own.** Pick 5 minutes, an hour, a day or a week. Unread
+  secrets vanish too.
+- **Safe from link previews.** Chat apps that unfurl links can't burn the
+  secret. It only opens on a click.
+- **No account, nothing to install.** Paste, pick an expiry, share the link.
+- **Yours to host.** Deploys to Vercel with Upstash Redis in a few clicks.
+
+## How it works
+
 The secret is encrypted in the browser (AES-256-GCM). The key lives only in
 the URL fragment (`#k=…`), which browsers never send to the server, so the
 server and Redis only ever hold ciphertext.
-
-## How it works
 
 1. The browser encrypts the secret and `POST /api/secrets` stores the
    ciphertext in Redis with `EX <ttl>`.
@@ -44,6 +63,7 @@ yarn dev                       # http://localhost:3000
 | Path                          | Contents                                        |
 | ----------------------------- | ----------------------------------------------- |
 | `src/app/`                    | Routes: `/`, `/s/[id]`, and the API handlers    |
+| `src/features/styleguide/`    | Dev-only `/styleguide` page, see `DESIGN.md`    |
 | `src/features/create-secret/` | Create form and share-link view                 |
 | `src/features/reveal-secret/` | Reveal flow and its expired/gone/invalid states |
 | `src/lib/crypto.ts`           | Web Crypto encrypt/decrypt                      |
